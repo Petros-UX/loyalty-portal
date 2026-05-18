@@ -4,419 +4,241 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Πληροφορική Κουφόπουλου - Loyalty Portal</title>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabler-icons@latest/tabler-icons.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background: linear-gradient(135deg, #f5f3ff 0%, #faf8ff 100%);
-      color: #1f2937;
-      min-height: 100vh;
-    }
-    .header {
-      background: linear-gradient(135deg, #6b21a8 0%, #7c3aed 100%);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(107, 33, 168, 0.2);
-    }
-    .header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 600; }
-    .header p { font-size: 1rem; opacity: 0.95; }
-    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
-    
-    .tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid #e5e7eb;
-    }
-    .tab-btn {
-      padding: 1rem;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-size: 1rem;
-      color: #6b7280;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    .tab-btn.active {
-      color: #6b21a8;
-      border-bottom-color: #6b21a8;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f5f3ff 0%, #faf8ff 100%); color: #1f2937; min-height: 100vh; }
+    .header { background: linear-gradient(135deg, #6b21a8 0%, #7c3aed 100%); color: white; padding: 2rem 1rem; text-align: center; box-shadow: 0 4px 12px rgba(107,33,168,0.2); }
+    .header img { height: 60px; margin-bottom: 1rem; }
+    .header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; font-weight: 700; }
+    .header p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    .tabs { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid #e5e7eb; }
+    .tab-btn { padding: 0.9rem 1.5rem; border: none; background: none; cursor: pointer; font-size: 1rem; color: #6b7280; border-bottom: 3px solid transparent; margin-bottom: -2px; font-weight: 500; transition: all 0.2s; }
+    .tab-btn.active { color: #6b21a8; border-bottom-color: #6b21a8; }
     .tab-btn:hover { color: #6b21a8; }
-    
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .leaderboard {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-    .leaderboard-row {
-      display: grid;
-      grid-template-columns: 60px 1fr 100px 100px;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #f3f4f6;
-      transition: background-color 0.2s ease;
-    }
-    .leaderboard-row:hover { background-color: #faf8ff; }
-    .leaderboard-row.header {
-      background: #f9fafb;
-      font-weight: 600;
-      color: #6b7280;
-      font-size: 0.9rem;
-    }
-    .rank { font-weight: 700; color: #6b21a8; font-size: 1.2rem; }
-    .rank.top3 { color: #7c3aed; font-size: 1.3rem; }
-    .ref-code { font-family: monospace; color: #374151; font-weight: 500; }
-    .points { font-weight: 600; color: #1f2937; }
-    .level {
-      display: inline-block;
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .level.bronze { background: #fcd34d; color: #78350f; }
-    .level.silver { background: #e5e7eb; color: #374151; }
-    .level.gold { background: #fbbf24; color: #78350f; }
-    
-    .lookup-form {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .lookup-form input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.2s ease;
-    }
-    .lookup-form input:focus {
-      outline: none;
-      border-color: #6b21a8;
-      box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.1);
-    }
-    .lookup-form button {
-      padding: 0.75rem 1.5rem;
-      background: #6b21a8;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card h2 { font-size: 1.2rem; color: #1f2937; margin-bottom: 1.2rem; }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #f9fafb; }
+    th { padding: 0.8rem 1rem; text-align: left; font-size: 0.85rem; color: #6b7280; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
+    td { padding: 0.9rem 1rem; border-bottom: 1px solid #f3f4f6; font-size: 0.95rem; }
+    tr:hover td { background: #faf8ff; }
+    .rank { font-weight: 700; color: #6b21a8; font-size: 1.1rem; }
+    .ref-code { font-family: monospace; font-weight: 600; color: #374151; }
+    .badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+    .badge.bronze { background: #fde68a; color: #92400e; }
+    .badge.silver { background: #e5e7eb; color: #374151; }
+    .badge.gold { background: #fbbf24; color: #78350f; }
+    .badge.none { background: #f3f4f6; color: #9ca3af; }
+    .lookup-form { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .lookup-form input { flex: 1; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
+    .lookup-form input:focus { outline: none; border-color: #6b21a8; box-shadow: 0 0 0 3px rgba(107,33,168,0.1); }
+    .lookup-form button { padding: 0.75rem 1.5rem; background: #6b21a8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
     .lookup-form button:hover { background: #7c3aed; }
-    
-    .profile-card {
-      background: linear-gradient(135deg, #f5f3ff 0%, #faf8ff 100%);
-      border: 2px solid #e9d5ff;
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 600px;
-    }
-    .profile-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-      border-bottom: 1px solid #e9d5ff;
-    }
-    .profile-row:last-child { border-bottom: none; }
-    .profile-label { color: #6b7280; font-weight: 500; }
-    .profile-value { color: #1f2937; font-weight: 600; font-size: 1.1rem; }
-    
-    .progress-bar {
-      width: 100%;
-      height: 12px;
-      background: #e5e7eb;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 0.5rem;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
-      border-radius: 999px;
-      transition: width 0.3s ease;
-    }
-    
-    .error {
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      color: #991b1b;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-    
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #6b7280;
-      font-size: 1.1rem;
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border: 3px solid #e5e7eb;
-      border-top-color: #6b21a8;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
+    .lookup-form button:disabled { background: #a78bfa; cursor: not-allowed; }
+    .profile-box { background: #faf8ff; border: 2px solid #e9d5ff; border-radius: 12px; padding: 1.5rem; max-width: 500px; }
+    .profile-box .ref-title { font-size: 1.4rem; font-weight: 700; color: #6b21a8; text-align: center; margin-bottom: 0.5rem; }
+    .profile-box .level-center { text-align: center; margin-bottom: 1.2rem; }
+    .p-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #e9d5ff; align-items: center; }
+    .p-row:last-child { border-bottom: none; }
+    .p-label { color: #6b7280; font-size: 0.95rem; }
+    .p-value { font-weight: 700; font-size: 1.05rem; color: #1f2937; }
+    .progress-wrap { margin-top: 1rem; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280; margin-bottom: 0.4rem; }
+    .progress-bar { height: 10px; background: #e5e7eb; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 999px; transition: width 0.5s; }
+    .pending-note { margin-top: 1rem; padding: 0.75rem 1rem; background: #fef3c7; border-radius: 8px; color: #92400e; font-size: 0.9rem; }
+    .error { background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 0.9rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem; }
+    .loading { text-align: center; padding: 2rem; color: #6b7280; }
+    .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid #e5e7eb; border-top-color: #6b21a8; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 0.5rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    
-    .medal { font-size: 1.2rem; }
+    .empty { text-align: center; color: #9ca3af; padding: 2rem; font-size: 0.95rem; }
   </style>
 </head>
 <body>
-  <div id="root"></div>
-  
-  <script type="text/babel">
-    const { useState, useEffect } = React;
-    
-    // Αντικατάστησε αυτό με το URL του Apps Script σου (Published as web app)
-    const API_URL = 'https://script.google.com/macros/s/AKfycbx7krCxIOGYbPCgMCSFn6hWFqWR3BNYlyZJaYUBG_PS1ppYj41RKCBxaYeTGaDicw46/exec';
-    
-    function LoyaltyPortal() {
-      const [activeTab, setActiveTab] = useState('leaderboard');
-      const [leaderboard, setLeaderboard] = useState([]);
-      const [clientInfo, setClientInfo] = useState(null);
-      const [searchRef, setSearchRef] = useState('');
-      const [loading, setLoading] = useState(false);
-      const [error, setError] = useState('');
-      
-      useEffect(() => {
-        fetchLeaderboard();
-      }, []);
-      
-      const fetchLeaderboard = async () => {
-        setLoading(true);
-        setError('');
-        try {
-          const response = await fetch(`${API_URL}?action=leaderboard`);
-          const data = await response.json();
-          if (data.success) {
-            setLeaderboard(data.leaderboard);
-          } else {
-            setError(data.error || 'Σφάλμα κατά τη φόρτωση');
-          }
-        } catch (err) {
-          setError('Δεν ήταν δυνατή η σύνδεση με τον server');
-        } finally {
-          setLoading(false);
-        }
-      };
-      
-      const handleSearch = async (e) => {
-        e.preventDefault();
-        if (!searchRef.trim()) {
-          setError('Εισάγετε τον κωδικό REF');
-          return;
-        }
-        
-        setLoading(true);
-        setError('');
-        try {
-          const response = await fetch(`${API_URL}?action=clientInfo&ref=${encodeURIComponent(searchRef.trim())}`);
-          const data = await response.json();
-          if (data.found) {
-            setClientInfo(data.data);
-          } else {
-            setError('Ο κωδικός REF δεν βρέθηκε');
-            setClientInfo(null);
-          }
-        } catch (err) {
-          setError('Δεν ήταν δυνατή η σύνδεση');
-        } finally {
-          setLoading(false);
-        }
-      };
-      
-      const getLevelBadge = (level) => {
-        const levels = { 'Bronze': 'bronze', 'Silver': 'silver', 'Gold': 'gold' };
-        return levels[level] || 'bronze';
-      };
-      
-      const getRankMedal = (rank) => {
-        if (rank === 1) return '🥇';
-        if (rank === 2) return '🥈';
-        if (rank === 3) return '🥉';
-        return rank;
-      };
-      
-      return (
-        <>
-          <div className="header">
-            <h1>🏆 Loyalty Program Portal</h1>
-            <p>Πληροφορική Κουφόπουλου</p>
-          </div>
-          
-          <div className="container">
-            <div className="tabs">
-              <button 
-                className={`tab-btn ${activeTab === 'leaderboard' ? 'active' : ''}`}
-                onClick={() => setActiveTab('leaderboard')}
-              >
-                📊 Κατάταξη (Leaderboard)
-              </button>
-              <button 
-                className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
-                onClick={() => setActiveTab('profile')}
-              >
-                👤 Ο Λογαριασμός μου
-              </button>
-            </div>
-            
-            {activeTab === 'leaderboard' && (
-              <div>
-                <div className="card">
-                  <h2 style={{fontSize: '1.3rem', marginBottom: '1rem', color: '#1f2937'}}>
-                    Top 20 Παίκτες
-                  </h2>
-                  {error && <div className="error">{error}</div>}
-                  {loading ? (
-                    <div className="loading">
-                      <div className="loading-spinner"></div>
-                      <p style={{marginTop: '1rem'}}>Φόρτωση...</p>
-                    </div>
-                  ) : (
-                    <div className="leaderboard">
-                      <div className="leaderboard-row header">
-                        <div style={{textAlign: 'center'}}>Θέση</div>
-                        <div>REF Code</div>
-                        <div style={{textAlign: 'center'}}>Πόντοι</div>
-                        <div style={{textAlign: 'center'}}>Επίπεδο</div>
-                      </div>
-                      {leaderboard.map((item, idx) => (
-                        <div key={idx} className="leaderboard-row">
-                          <div style={{textAlign: 'center'}}>
-                            <span className={`rank ${idx < 3 ? 'top3' : ''}`}>
-                              {getRankMedal(item.rank)}
-                            </span>
-                          </div>
-                          <div className="ref-code">{item.ref}</div>
-                          <div style={{textAlign: 'center'}} className="points">{item.points}</div>
-                          <div style={{textAlign: 'center'}}>
-                            <span className={`level ${getLevelBadge(item.level)}`}>
-                              {item.level}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-            
-            {activeTab === 'profile' && (
-              <div>
-                <div className="card">
-                  <h2 style={{fontSize: '1.3rem', marginBottom: '1.5rem', color: '#1f2937'}}>
-                    Αναζήτηση Προφίλ
-                  </h2>
-                  <form onSubmit={handleSearch} className="lookup-form">
-                    <input
-                      type="text"
-                      placeholder="Εισάγετε τον κωδικό REF (π.χ. REF-001)"
-                      value={searchRef}
-                      onChange={(e) => setSearchRef(e.target.value.toUpperCase())}
-                      disabled={loading}
-                    />
-                    <button type="submit" disabled={loading}>
-                      <i className="ti ti-search"></i>
-                      Αναζήτηση
-                    </button>
-                  </form>
-                  
-                  {error && <div className="error">{error}</div>}
-                  
-                  {loading && (
-                    <div className="loading">
-                      <div className="loading-spinner"></div>
-                      <p style={{marginTop: '1rem'}}>Φόρτωση...</p>
-                    </div>
-                  )}
-                  
-                  {clientInfo && (
-                    <div className="profile-card">
-                      <div style={{textAlign: 'center', marginBottom: '1.5rem'}}>
-                        <h3 style={{fontSize: '1.5rem', color: '#6b21a8', marginBottom: '0.5rem'}}>
-                          {clientInfo.ref}
-                        </h3>
-                        <span className={`level ${getLevelBadge(clientInfo.level)}`} style={{fontSize: '1.1rem'}}>
-                          {clientInfo.level}
-                        </span>
-                      </div>
-                      
-                      <div className="profile-row">
-                        <span className="profile-label">Ενεργοί Πόντοι</span>
-                        <span className="profile-value">{clientInfo.activePoints}</span>
-                      </div>
-                      
-                      <div className="profile-row">
-                        <span className="profile-label">Σύνολο Πόντων</span>
-                        <span className="profile-value">{clientInfo.totalPoints}</span>
-                      </div>
-                      
-                      {clientInfo.nextLevel && (
-                        <>
-                          <div className="profile-row">
-                            <span className="profile-label">Πόντοι για {clientInfo.nextLevel}</span>
-                            <span className="profile-value">{clientInfo.toNext}</span>
-                          </div>
-                          <div style={{paddingTop: '1rem', borderTop: '1px solid #e9d5ff', marginTop: '0.5rem'}}>
-                            <span className="profile-label">Πρόοδος</span>
-                            <div className="progress-bar">
-                              <div 
-                                className="progress-fill" 
-                                style={{width: `${Math.min(100, (clientInfo.activePoints / (clientInfo.activePoints + clientInfo.toNext)) * 100)}%`}}
-                              ></div>
-                            </div>
-                            <p style={{fontSize: '0.85rem', color: '#6b7280', marginTop: '0.5rem'}}>
-                              {Math.round((clientInfo.activePoints / (clientInfo.activePoints + clientInfo.toNext)) * 100)}% κατά τρόπο για {clientInfo.nextLevel}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {clientInfo.pendingCount > 0 && (
-                        <div style={{marginTop: '1rem', padding: '1rem', background: '#fef3c7', borderRadius: '8px', color: '#92400e'}}>
-                          ⏳ {clientInfo.pendingCount} ενέργεια(ες) σε εκκρεμότητα
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        </>
-      );
-    }
-    
-    ReactDOM.render(<LoyaltyPortal />, document.getElementById('root'));
-  </script>
+
+<div class="header">
+  <img src="https://pliroforikikoufopoulou.gr/wp-content/uploads/2023/06/123.png" alt="Logo" onerror="this.style.display='none'">
+  <h1>🏆 Loyalty Program Portal</h1>
+  <p>Πληροφορική Κουφόπουλου</p>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('leaderboard', this)">📊 Κατάταξη</button>
+    <button class="tab-btn" onclick="showTab('profile', this)">👤 Ο Λογαριασμός μου</button>
+  </div>
+
+  <!-- LEADERBOARD TAB -->
+  <div id="tab-leaderboard">
+    <div class="card">
+      <h2>🏆 Top 20 Παίκτες</h2>
+      <div id="lb-content">
+        <div class="loading"><span class="spinner"></span> Φόρτωση...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE TAB -->
+  <div id="tab-profile" style="display:none">
+    <div class="card">
+      <h2>👤 Αναζήτηση Προφίλ</h2>
+      <div class="lookup-form">
+        <input type="text" id="ref-input" placeholder="Εισάγετε τον κωδικό REF (π.χ. REF-001)" oninput="this.value=this.value.toUpperCase()">
+        <button id="search-btn" onclick="searchProfile()">Αναζήτηση</button>
+      </div>
+      <div id="profile-error" style="display:none" class="error"></div>
+      <div id="profile-loading" style="display:none" class="loading"><span class="spinner"></span> Αναζήτηση...</div>
+      <div id="profile-result" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ══════════════════════════════════════════════
+  // ΑΛΛΑΞΕ ΤΟ URL ΑΠΟ ΤΟ APPS SCRIPT
+  // ══════════════════════════════════════════════
+  var API_URL = 'https://script.google.com/macros/s/AKfycbx5LcTZ76FPxg67hw0gqnx_GrnGr7p7fFvcO9rmCsAp0dPzn2c9JrQf7GUFv4BXBfYO/exec';
+  // ══════════════════════════════════════════════
+
+  // JSONP helper
+  function jsonpCall(url, callback) {
+    var cbName = 'cb_' + Date.now() + '_' + Math.floor(Math.random()*10000);
+    window[cbName] = function(data) {
+      callback(null, data);
+      delete window[cbName];
+      var s = document.getElementById(cbName);
+      if (s) s.parentNode.removeChild(s);
+    };
+    var script = document.createElement('script');
+    script.id = cbName;
+    script.src = url + '&callback=' + cbName;
+    script.onerror = function() {
+      callback('Σφάλμα σύνδεσης με τον server');
+      delete window[cbName];
+      var s = document.getElementById(cbName);
+      if (s) s.parentNode.removeChild(s);
+    };
+    document.head.appendChild(script);
+  }
+
+  function getLevelClass(level) {
+    if (level === 'Gold')   return 'gold';
+    if (level === 'Silver') return 'silver';
+    if (level === 'Bronze') return 'bronze';
+    return 'none';
+  }
+
+  function getRankEmoji(rank) {
+    if (rank === 1) return '🥇';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
+    return rank;
+  }
+
+  // Φόρτωση leaderboard
+  function loadLeaderboard() {
+    jsonpCall(API_URL + '?action=leaderboard', function(err, data) {
+      var el = document.getElementById('lb-content');
+      if (err || !data || !data.success) {
+        el.innerHTML = '<div class="error">Σφάλμα φόρτωσης δεδομένων. Δοκιμάστε να ανανεώσετε τη σελίδα.</div>';
+        return;
+      }
+      if (!data.leaderboard || data.leaderboard.length === 0) {
+        el.innerHTML = '<div class="empty">Δεν υπάρχουν δεδομένα ακόμα.</div>';
+        return;
+      }
+      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Ενεργοί Πόντοι</th><th>Επίπεδο</th></tr></thead><tbody>';
+      data.leaderboard.forEach(function(item) {
+        html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
+        html += '<td><span class="ref-code">' + item.ref + '</span></td>';
+        html += '<td><strong>' + item.points + '</strong></td>';
+        html += '<td><span class="badge ' + getLevelClass(item.level) + '">' + item.level + '</span></td></tr>';
+      });
+      html += '</tbody></table>';
+      el.innerHTML = html;
+    });
+  }
+
+  // Αναζήτηση προφίλ
+  function searchProfile() {
+    var ref = document.getElementById('ref-input').value.trim();
+    if (!ref) { showProfileError('Εισάγετε τον κωδικό REF'); return; }
+
+    document.getElementById('search-btn').disabled = true;
+    document.getElementById('profile-error').style.display = 'none';
+    document.getElementById('profile-result').style.display = 'none';
+    document.getElementById('profile-loading').style.display = 'block';
+
+    jsonpCall(API_URL + '?action=clientInfo&ref=' + encodeURIComponent(ref), function(err, data) {
+      document.getElementById('profile-loading').style.display = 'none';
+      document.getElementById('search-btn').disabled = false;
+
+      if (err || !data || !data.success) {
+        showProfileError('Σφάλμα σύνδεσης. Δοκιμάστε ξανά.');
+        return;
+      }
+      if (!data.found) {
+        showProfileError('Ο κωδικός REF δεν βρέθηκε.');
+        return;
+      }
+
+      var d = data.data;
+      var levelClass = getLevelClass(d.level);
+
+      // Progress bar
+      var progressHtml = '';
+      if (d.nextLevel) {
+        var total = d.activePoints + d.toNext;
+        var pct = total > 0 ? Math.round((d.activePoints / total) * 100) : 0;
+        progressHtml = '<div class="progress-wrap">'
+          + '<div class="progress-label"><span>Πρόοδος για ' + d.nextLevel + '</span><span>' + pct + '%</span></div>'
+          + '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>'
+          + '</div>';
+      }
+
+      // Pending
+      var pendingHtml = d.pendingCount > 0
+        ? '<div class="pending-note">⏳ ' + d.pendingCount + ' ενέργεια(ες) σε αναμονή έγκρισης</div>'
+        : '';
+
+      var html = '<div class="profile-box">'
+        + '<div class="ref-title">' + d.ref + '</div>'
+        + '<div class="level-center"><span class="badge ' + levelClass + '">' + d.level + '</span></div>'
+        + '<div class="p-row"><span class="p-label">Ενεργοί Πόντοι</span><span class="p-value">' + d.activePoints + '</span></div>'
+        + '<div class="p-row"><span class="p-label">Σύνολο Πόντων</span><span class="p-value">' + d.totalPoints + '</span></div>';
+      if (d.nextLevel) {
+        html += '<div class="p-row"><span class="p-label">Χρειάζεστε ακόμα για ' + d.nextLevel + '</span><span class="p-value">' + d.toNext + ' πόντοι</span></div>';
+      }
+      html += progressHtml + pendingHtml + '</div>';
+
+      var el = document.getElementById('profile-result');
+      el.innerHTML = html;
+      el.style.display = 'block';
+    });
+  }
+
+  function showProfileError(msg) {
+    var el = document.getElementById('profile-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function showTab(tab, btn) {
+    document.getElementById('tab-leaderboard').style.display = tab === 'leaderboard' ? 'block' : 'none';
+    document.getElementById('tab-profile').style.display = tab === 'profile' ? 'block' : 'none';
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+  }
+
+  // Enter key για αναζήτηση
+  document.getElementById('ref-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') searchProfile();
+  });
+
+  // Φόρτωση leaderboard κατά την εκκίνηση
+  loadLeaderboard();
+</script>
+
 </body>
 </html>
