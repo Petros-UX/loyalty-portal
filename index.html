@@ -303,6 +303,7 @@
   function showTab(tab, btn) {
     document.getElementById('tab-leaderboard').style.display = tab === 'leaderboard' ? 'block' : 'none';
     document.getElementById('tab-profile').style.display = tab === 'profile' ? 'block' : 'none';
+    document.getElementById('tab-guide').style.display = tab === 'guide' ? 'block' : 'none';
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
   }
