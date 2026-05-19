@@ -67,6 +67,7 @@
   <div class="tabs">
     <button class="tab-btn active" onclick="showTab('leaderboard', this)">📊 Κατάταξη</button>
     <button class="tab-btn" onclick="showTab('profile', this)">👤 Ο Λογαριασμός μου</button>
+    <button class="tab-btn" onclick="showTab('guide', this)">📖 Οδηγός</button>
   </div>
 
   <!-- LEADERBOARD TAB -->
@@ -79,8 +80,92 @@
     </div>
   </div>
 
-  <!-- PROFILE TAB -->
-  <div id="tab-profile" style="display:none">
+  <!-- GUIDE TAB -->
+  <div id="tab-guide" style="display:none">
+    <!-- Πώς δουλεύει -->
+    <div class="card">
+      <h2>🎯 Πώς δουλεύει το Loyalty Program</h2>
+      <p style="color: #6b7280; line-height: 1.6; margin-bottom: 1.5rem;">
+        Κάθε ενέργεια που κάνετε μας βοηθάει να σας γνωρίσουμε καλύτερα. Συγκεντρώστε πόντους και ξεκλειδώστε αποκλειστικές ανταμοιβές!
+      </p>
+      
+      <!-- Επίπεδα -->
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1rem; color: #1f2937;">🏆 Τα 3 Επίπεδα Επιβράβευσης</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+        <div style="background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%); border-radius: 12px; padding: 1.5rem; text-align: center; color: #78350f;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🥉</div>
+          <div style="font-weight: 700; margin-bottom: 0.5rem;">Bronze</div>
+          <div style="font-size: 0.9rem;">150-349 πόντοι</div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem;">Έκπτωση 10%</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%); border-radius: 12px; padding: 1.5rem; text-align: center; color: #374151;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🥈</div>
+          <div style="font-weight: 700; margin-bottom: 0.5rem;">Silver</div>
+          <div style="font-size: 0.9rem;">350-599 πόντοι</div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem;">Έκπτωση 15%</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 12px; padding: 1.5rem; text-align: center; color: #92400e;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🥇</div>
+          <div style="font-weight: 700; margin-bottom: 0.5rem;">Gold</div>
+          <div style="font-size: 0.9rem;">600+ πόντοι</div>
+          <div style="margin-top: 0.8rem; font-size: 0.85rem;">Έκπτωση 20%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Τρόποι για πόντους -->
+    <div class="card">
+      <h2>💰 Πώς Συγκεντρώνετε Πόντους</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+        <div style="background: #f0f9ff; border-left: 4px solid #6b21a8; padding: 1.2rem; border-radius: 8px;">
+          <div style="font-size: 1.3rem; margin-bottom: 0.5rem;">🛍️</div>
+          <div style="font-weight: 700; color: #1f2937; margin-bottom: 0.5rem;">Αγορά Υπηρεσίας</div>
+          <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.8rem;">Κάθε €100 = 10 πόντοι</div>
+          <div style="background: white; padding: 0.5rem 0.8rem; border-radius: 6px; text-align: center; font-weight: 700; color: #6b21a8;">+10 πόντοι</div>
+        </div>
+        <div style="background: #fef3c7; border-left: 4px solid #b45309; padding: 1.2rem; border-radius: 8px;">
+          <div style="font-size: 1.3rem; margin-bottom: 0.5rem;">⭐</div>
+          <div style="font-weight: 700; color: #1f2937; margin-bottom: 0.5rem;">Google Review</div>
+          <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.8rem;">Αξιολόγηση στο Google</div>
+          <div style="background: white; padding: 0.5rem 0.8rem; border-radius: 6px; text-align: center; font-weight: 700; color: #6b21a8;">+20 πόντοι</div>
+        </div>
+        <div style="background: #fce7f3; border-left: 4px solid #be185d; padding: 1.2rem; border-radius: 8px;">
+          <div style="font-size: 1.3rem; margin-bottom: 0.5rem;">🎥</div>
+          <div style="font-weight: 700; color: #1f2937; margin-bottom: 0.5rem;">Video Review</div>
+          <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.8rem;">Βίντεο κριτική στο YouTube</div>
+          <div style="background: white; padding: 0.5rem 0.8rem; border-radius: 6px; text-align: center; font-weight: 700; color: #6b21a8;">+40 πόντοι</div>
+        </div>
+        <div style="background: #e0e7ff; border-left: 4px solid #4c1d95; padding: 1.2rem; border-radius: 8px;">
+          <div style="font-size: 1.3rem; margin-bottom: 0.5rem;">💭</div>
+          <div style="font-weight: 700; color: #1f2937; margin-bottom: 0.5rem;">Feedback</div>
+          <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.8rem;">Απόψεις & Σχόλια</div>
+          <div style="background: white; padding: 0.5rem 0.8rem; border-radius: 6px; text-align: center; font-weight: 700; color: #6b21a8;">+10 πόντοι</div>
+        </div>
+        <div style="background: #f0fdf4; border-left: 4px solid #15803d; padding: 1.2rem; border-radius: 8px;">
+          <div style="font-size: 1.3rem; margin-bottom: 0.5rem;">👥</div>
+          <div style="font-weight: 700; color: #1f2937; margin-bottom: 0.5rem;">Σύσταση (Αγορά)</div>
+          <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.8rem;">Όταν ο σταθμό κάνει αγορά</div>
+          <div style="background: white; padding: 0.5rem 0.8rem; border-radius: 6px; text-align: center; font-weight: 700; color: #6b21a8;">+50 πόντοι</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ξεκινήστε τώρα -->
+    <div class="card" style="background: linear-gradient(135deg, #6b21a8 0%, #7c3aed 100%); color: white; text-align: center;">
+      <h2 style="color: white; margin-bottom: 1rem;">🚀 Ξεκινήστε Τώρα!</h2>
+      <p style="margin-bottom: 1.5rem; opacity: 0.95;">
+        Εγγραφείτε στο πρόγραμμα και ξεκλειδώστε αποκλειστικές ανταμοιβές
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button onclick="registerForm(false)" style="background: white; color: #6b21a8; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.2s;">
+          ✍️ Εγγραφή
+        </button>
+        <button onclick="registerForm(true)" style="background: #fbbf24; color: #78350f; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem; transition: transform 0.2s;">
+          👥 Εγγραφή + Σύσταση
+        </button>
+      </div>
+    </div>
+  </div>
     <div class="card">
       <h2>👤 Αναζήτηση Προφίλ</h2>
       <div class="lookup-form">
@@ -226,6 +311,14 @@
   document.getElementById('ref-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') searchProfile();
   });
+
+  // Registration form
+  function registerForm(withReferral) {
+    var message = withReferral 
+      ? 'Για εγγραφή με σύσταση, επικοινωνήστε μαζί μας ή συμπληρώστε τη φόρμα εγγραφής.'
+      : 'Για εγγραφή, επικοινωνήστε μαζί μας ή συμπληρώστε τη φόρμα εγγραφής.';
+    alert(message + '\n\nEmail: info@pliroforikikoufopoulou.gr\nTηλέφωνο: +30 2XX XXXXXXX');
+  }
 
   // Φόρτωση leaderboard κατά την εκκίνηση
   loadLeaderboard();
