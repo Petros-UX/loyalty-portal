@@ -98,7 +98,8 @@
   // ══════════════════════════════════════════════
   // ΑΛΛΑΞΕ ΤΟ URL ΑΠΟ ΤΟ APPS SCRIPT
   // ══════════════════════════════════════════════
-  var API_URL = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://script.google.com/macros/s/AKfycbx5LcTZ76FPxg67hw0gqnx_GrnGr7p7fFvcO9rmCsAp0dPzn2c9JrQf7GUFv4BXBfYO/exec');
+  var BASE_API = 'https://script.google.com/macros/s/AKfycbx5LcTZ76FPxg67hw0gqnx_GrnGr7p7fFvcO9rmCsAp0dPzn2c9JrQf7GUFv4BXBfYO/exec';
+  var API_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(BASE_API);
   // ══════════════════════════════════════════════
 
   // Fetch helper
@@ -231,4 +232,3 @@
 
 </body>
 </html>
-
