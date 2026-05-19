@@ -99,7 +99,6 @@
   // ΑΛΛΑΞΕ ΤΟ URL ΑΠΟ ΤΟ APPS SCRIPT
   // ══════════════════════════════════════════════
   var BASE_API = 'https://script.google.com/macros/s/AKfycbx5LcTZ76FPxg67hw0gqnx_GrnGr7p7fFvcO9rmCsAp0dPzn2c9JrQf7GUFv4BXBfYO/exec';
-  var API_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(BASE_API);
   // ══════════════════════════════════════════════
 
   // Fetch helper
@@ -126,7 +125,8 @@
 
   // Φόρτωση leaderboard
   function loadLeaderboard() {
-    var url = API_URL + '&action=leaderboard';
+    var fullUrl = BASE_API + '?action=leaderboard';
+    var url = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(fullUrl);
     apiCall(url, function(err, data) {
       var el = document.getElementById('lb-content');
       if (err || !data || !data.success) {
@@ -159,7 +159,8 @@
     document.getElementById('profile-result').style.display = 'none';
     document.getElementById('profile-loading').style.display = 'block';
 
-    var url = API_URL + '&action=clientInfo&ref=' + encodeURIComponent(ref);
+    var fullUrl = BASE_API + '?action=clientInfo&ref=' + encodeURIComponent(ref);
+    var url = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(fullUrl);
     apiCall(url, function(err, data) {
       document.getElementById('profile-loading').style.display = 'none';
       document.getElementById('search-btn').disabled = false;
