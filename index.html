@@ -76,6 +76,15 @@
     .cta-btn.white:hover { transform: scale(1.05); }
     .cta-btn.gold { background: #fbbf24; color: #78350f; }
     .cta-btn.gold:hover { transform: scale(1.05); }
+    
+    /* Tab background colors */
+    #tab-leaderboard { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
+    #tab-profile { background: linear-gradient(135deg, #e9d5ff 0%, #f3e8ff 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
+    #tab-guide { background: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
+    
+    #tab-leaderboard .card { background: white; }
+    #tab-profile .card { background: white; }
+    #tab-guide .card { background: white; }
   </style>
 </head>
 <body>
@@ -88,9 +97,9 @@
 
 <div class="container">
   <div class="tabs">
-    <button class="tab-btn active" data-tab="leaderboard">📊 Κατάταξη</button>
-    <button class="tab-btn" data-tab="profile">👤 Ο Λογαριασμός μου</button>
-    <button class="tab-btn" data-tab="guide">📖 Οδηγός</button>
+    <button class="tab-btn active" data-tab="leaderboard">🏆 Hall of Fame</button>
+    <button class="tab-btn" data-tab="profile">💎 Η Διαδρομή μου</button>
+    <button class="tab-btn" data-tab="guide">🗺️ Πώς Παίζουμε;</button>
   </div>
 
   <!-- LEADERBOARD TAB -->
