@@ -49,6 +49,39 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .empty { text-align: center; color: #9ca3af; padding: 2rem; font-size: 0.95rem; }
     
+    /* ✨ PHASE 1 ANIMATIONS ✨ */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInTab { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(107, 33, 168, 0.5); } 50% { box-shadow: 0 0 40px rgba(107, 33, 168, 0.8); } }
+    
+    /* Tab Content Fade In */
+    .tab-content { animation: fadeIn 0.5s ease-in-out; }
+    
+    /* Cards 3D Lift on Hover */
+    .card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
+    
+    /* Buttons Glow Effect */
+    .cta-btn { transition: all 0.3s ease; position: relative; }
+    .cta-btn:hover { box-shadow: 0 0 30px rgba(107, 33, 168, 0.6); transform: scale(1.08); }
+    .cta-btn.gold:hover { box-shadow: 0 0 30px rgba(249, 158, 11, 0.6); }
+    
+    /* Tab Button Smooth Transition */
+    .tab-btn { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    
+    /* Table Row Hover */
+    tr { transition: all 0.2s ease; }
+    tr:hover td { background: #faf8ff; transform: scale(1.01); }
+    
+    /* Floating Background Elements */
+    .floating-emoji { position: fixed; font-size: 3rem; opacity: 0.1; pointer-events: none; z-index: -1; animation: float 6s ease-in-out infinite; }
+    .floating-emoji:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+    .floating-emoji:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; font-size: 2.5rem; }
+    .floating-emoji:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 2s; }
+    .floating-emoji:nth-child(4) { top: 50%; right: 5%; animation-delay: 1.5s; font-size: 2rem; }
+    .floating-emoji:nth-child(5) { bottom: 20%; right: 20%; animation-delay: 2.5s; }
+    
     /* Guide styles */
     .level-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
     .level-card { border-radius: 12px; padding: 1.5rem; text-align: center; color: white; }
@@ -88,6 +121,13 @@
   </style>
 </head>
 <body>
+
+<!-- ✨ Floating Background Elements -->
+<div class="floating-emoji">🏆</div>
+<div class="floating-emoji">💎</div>
+<div class="floating-emoji">⭐</div>
+<div class="floating-emoji">🎁</div>
+<div class="floating-emoji">🚀</div>
 
 <div class="header">
   <img src="https://pliroforikikoufopoulou.gr/wp-content/uploads/2023/06/123.png" alt="Logo" onerror="this.style.display='none'">
