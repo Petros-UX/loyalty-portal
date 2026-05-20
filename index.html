@@ -127,7 +127,76 @@
     
     @keyframes countUp { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
     @keyframes confettiFall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+    
+    /* ═══════════════════════════════════════ */
+    /* MOBILE RESPONSIVE DESIGN */
+    /* ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .header { padding: 1.5rem 0.5rem; }
+      .header h1 { font-size: 1.3rem; }
+      .header p { font-size: 0.85rem; }
+      .header img { height: 40px; }
+      
+      .container { max-width: 100%; padding: 0 0.75rem; }
+      
+      .tabs { gap: 0.25rem; }
+      .tab-btn { padding: 0.7rem 0.8rem; font-size: 0.85rem; }
+      
+      .card { padding: 1rem; margin-bottom: 1rem; }
+      .card h2 { font-size: 1.05rem; }
+      .card h3 { font-size: 0.95rem; }
+      
+      .lookup-form { flex-direction: column; gap: 0.5rem; }
+      .lookup-form input { padding: 0.65rem 0.75rem; font-size: 0.95rem; }
+      .lookup-form button { padding: 0.65rem 1rem; font-size: 0.9rem; width: 100%; }
+      
+      .cta-buttons { flex-direction: column; }
+      .cta-btn { width: 100%; padding: 0.9rem 1rem; font-size: 0.95rem; }
+      
+      .level-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .level-card { padding: 1rem; }
+      .level-card .emoji { font-size: 1.8rem; }
+      .level-card .name { font-size: 0.95rem; }
+      .level-card .range { font-size: 0.8rem; }
+      
+      .points-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+      .point-card { padding: 0.9rem; }
+      .point-card .emoji { font-size: 1.1rem; }
+      .point-card .name { font-size: 0.9rem; }
+      .point-card .desc { font-size: 0.8rem; }
+      
+      .cta-box { padding: 1.5rem; }
+      .cta-box h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+      .cta-box p { font-size: 0.9rem; margin-bottom: 1rem; }
+      
+      .profile-box { max-width: 100%; }
+      .profile-box .ref-title { font-size: 1.2rem; }
+      .p-row { padding: 0.6rem 0; }
+      .p-label { font-size: 0.9rem; }
+      .p-value { font-size: 0.95rem; }
+      
+      table { font-size: 0.85rem; }
+      th { padding: 0.6rem 0.5rem; font-size: 0.75rem; }
+      td { padding: 0.7rem 0.5rem; }
+      
+      .badge { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+      
+      /* Tab borders */
+      #tab-leaderboard, #tab-profile, #tab-guide { padding: 1.5rem 0.75rem; margin-bottom: 1rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .header h1 { font-size: 1.1rem; }
+      .tab-btn { padding: 0.6rem 0.5rem; font-size: 0.75rem; }
+      .card { padding: 0.8rem; }
+      .cta-box { padding: 1rem; }
+      .level-card .emoji { font-size: 1.5rem; }
+      .point-card .emoji { font-size: 1rem; }
+    }
   </style>
+  
+  <!-- Mobile Responsive Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 </head>
 <body>
 
