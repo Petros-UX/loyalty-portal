@@ -110,14 +110,23 @@
     .cta-btn.gold { background: #fbbf24; color: #78350f; }
     .cta-btn.gold:hover { transform: scale(1.05); }
     
-    /* Tab background colors */
-    #tab-leaderboard { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
-    #tab-profile { background: linear-gradient(135deg, #e9d5ff 0%, #f3e8ff 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
-    #tab-guide { background: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 100%); padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; }
+    /* Tab background colors - Now with Top Border */
+    #tab-leaderboard { border-top: 5px solid #fbbf24; padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; background: transparent; }
+    #tab-profile { border-top: 5px solid #a78bfa; padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; background: transparent; }
+    #tab-guide { border-top: 5px solid #10b981; padding: 2rem 1rem; border-radius: 12px; margin-bottom: 2rem; background: transparent; }
     
     #tab-leaderboard .card { background: white; }
     #tab-profile .card { background: white; }
     #tab-guide .card { background: white; }
+    
+    /* Counter Animation */
+    .counter { display: inline-block; animation: countUp 0.6s ease-out; font-weight: 700; }
+    
+    /* Confetti */
+    .confetti-piece { position: fixed; pointer-events: none; z-index: 9999; animation: confettiFall 3s ease-in forwards; }
+    
+    @keyframes countUp { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+    @keyframes confettiFall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
   </style>
 </head>
 <body>
@@ -220,8 +229,8 @@
         <h2>🚀 Ξεκινήστε Τώρα!</h2>
         <p>Εγγραφείτε στο πρόγραμμα και ξεκλειδώστε αποκλειστικές ανταμοιβές</p>
         <div class="cta-buttons">
-          <a href="https://script.google.com/macros/s/AKfycbxIeJthAcaq_fWeSzSOVglSPew0WLracBJBf2TdpbMr2NXpaGnXhHpF5A8LA-g83eXq/exec" target="_blank" class="cta-btn white">✍️ Εγγραφή</a>
-          <a href="https://script.google.com/macros/s/AKfycbxIeJthAcaq_fWeSzSOVglSPew0WLracBJBf2TdpbMr2NXpaGnXhHpF5A8LA-g83eXq/exec" target="_blank" class="cta-btn gold">🎁 Εγγραφή + Σύσταση</a>
+          <a href="https://script.google.com/macros/s/AKfycbxIeJthAcaq_fWeSzSOVglSPew0WLracBJBf2TdpbMr2NXpaGnXhHpF5A8LA-g83eXq/exec" target="_blank" class="cta-btn white" onclick="createConfetti()">✍️ Εγγραφή</a>
+          <a href="https://script.google.com/macros/s/AKfycbxIeJthAcaq_fWeSzSOVglSPew0WLracBJBf2TdpbMr2NXpaGnXhHpF5A8LA-g83eXq/exec" target="_blank" class="cta-btn gold" onclick="createConfetti()">🎁 Εγγραφή + Σύσταση</a>
         </div>
         <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.9;">Η φόρμα θα ανοίξει σε νέο παράθυρο, επιλέξτε από τη λίστα και ξεκινάμε! 🎁</p>
         <div style="background: linear-gradient(135deg, #dc2626 0%, #f59e0b 50%, #fbbf24 100%); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; text-align: center; box-shadow: 0 4px 12px rgba(220,38,38,0.3);">
@@ -268,6 +277,24 @@
     btn.classList.add('active');
   }
 
+  // 🎊 CONFETTI FUNCTION
+  function createConfetti() {
+    var colors = ['#fbbf24', '#a78bfa', '#10b981', '#6b21a8', '#f59e0b', '#ec4899'];
+    for (var i = 0; i < 30; i++) {
+      var confetti = document.createElement('div');
+      confetti.className = 'confetti-piece';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.top = '-10px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = Math.random() * 10 + 5 + 'px';
+      confetti.style.height = confetti.style.width;
+      confetti.style.borderRadius = '50%';
+      confetti.style.opacity = '0.8';
+      document.body.appendChild(confetti);
+      setTimeout(function() { confetti.remove(); }, 3000);
+    }
+  }
+
   // API Call
   function apiCall(url, callback) {
     fetch(url)
@@ -308,7 +335,7 @@
       data.leaderboard.forEach(function(item) {
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
         html += '<td><span class="ref-code">' + item.ref + '</span></td>';
-        html += '<td><strong>' + item.points + '</strong></td>';
+        html += '<td><strong><span class="counter">' + item.points + '</span></strong></td>';
         html += '<td><span class="badge ' + getLevelClass(item.level) + '">' + item.level + '</span></td></tr>';
       });
       html += '</tbody></table>';
