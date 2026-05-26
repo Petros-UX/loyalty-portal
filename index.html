@@ -37,12 +37,21 @@
     .lookup-form button { padding: 0.75rem 1.5rem; background: #6b21a8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; }
     .lookup-form button:hover { background: #7c3aed; }
     .lookup-form button:disabled { background: #a78bfa; cursor: not-allowed; }
-    .profile-box { background: #faf8ff; border: 2px solid #e9d5ff; border-radius: 12px; padding: 1.5rem; max-width: 500px; }
+    .profile-box { background: #faf8ff; border: 2px solid #e9d5ff; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
     .profile-box .ref-title { font-size: 1.4rem; font-weight: 700; color: #6b21a8; text-align: center; margin-bottom: 0.5rem; }
+    .dual-display { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .dual-card { background: #f9fafb; border-radius: 8px; padding: 1.2rem; border-left: 4px solid #6b21a8; }
+    .dual-card.leaderboard { border-left-color: #f59e0b; }
+    .dual-card h4 { font-size: 0.9rem; color: #6b7280; margin-bottom: 0.5rem; font-weight: 600; }
+    .dual-card .big-number { font-size: 1.8rem; font-weight: 700; color: #1f2937; }
+    .dual-card .sub-text { font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem; }
     .p-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #e9d5ff; }
     .p-row:last-child { border-bottom: none; }
     .p-label { color: #6b7280; font-size: 0.95rem; }
     .p-value { font-weight: 700; font-size: 1.05rem; color: #1f2937; }
+    .tier-badges { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+    .tier-badge { display: flex; align-items: center; gap: 0.3rem; padding: 0.4rem 0.8rem; background: #f3f4f6; border-radius: 6px; font-size: 0.85rem; }
+    .tier-badge.redeemed { background: #d1fae5; color: #065f46; font-weight: 600; }
     .error { background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 0.9rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem; }
     .loading { text-align: center; padding: 2rem; color: #6b7280; }
     .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid #e5e7eb; border-top-color: #6b21a8; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 0.5rem; }
@@ -175,6 +184,9 @@
       .p-label { font-size: 0.9rem; }
       .p-value { font-size: 0.95rem; }
       
+      .dual-display { grid-template-columns: 1fr; }
+      .dual-card { border-bottom: 2px solid #e5e7eb; border-left: none; }
+      
       table { font-size: 0.85rem; }
       th { padding: 0.6rem 0.5rem; font-size: 0.75rem; }
       td { padding: 0.7rem 0.5rem; }
@@ -235,28 +247,37 @@
     <div class="card">
       <h2>🎯 Πώς δουλεύει το Loyalty Program</h2>
       <p style="color: #6b7280; line-height: 1.6; margin-bottom: 1.5rem;">
-        Κάθε ενέργεια που κάνετε μας βοηθάει να σας γνωρίσουμε καλύτερα. Συγκεντρώστε πόντους και ξεκλειδώστε αποκλειστικές ανταμοιβές!
+        Το πρόγραμμα μας έχει <strong>δύο παράλληλα κίνητρα</strong>: προσωπικές αγορές + ετήσιο διαγωνισμό. Κάθε πόντος σας φέρνει πιο κοντά σε αποκλειστικές ανταμοιβές!
       </p>
       
-      <h3>🏆 Τα 3 Επίπεδα Επιβράβευσης</h3>
+      <h3>🏆 Τα 3 Επίπεδα Προσωπικών Αγορών (Rolling 12-μήνων)</h3>
       <div class="level-grid">
         <div class="level-card bronze">
           <div class="emoji">🥉</div>
           <div class="name">Bronze</div>
-          <div class="range">150-349 πόντοι</div>
-          <div class="reward">Έκπτωση 10%</div>
+          <div class="range">150+ πόντοι</div>
+          <div class="reward">Δώρο: €50 υπηρεσία</div>
         </div>
         <div class="level-card silver">
           <div class="emoji">🥈</div>
           <div class="name">Silver</div>
-          <div class="range">350-599 πόντοι</div>
-          <div class="reward">Έκπτωση 15%</div>
+          <div class="range">350+ πόντοι</div>
+          <div class="reward">Δώρο: €70 υπηρεσία</div>
         </div>
         <div class="level-card gold">
           <div class="emoji">🥇</div>
           <div class="name">Gold</div>
           <div class="range">600+ πόντοι</div>
-          <div class="reward">Έκπτωση 20%</div>
+          <div class="reward">Δώρο: €90 υπηρεσία</div>
+        </div>
+      </div>
+
+      <h3>📅 🏆 Ετήσιος Διαγωνισμός (Σεπτ-Ιούν)</h3>
+      <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.2rem; border-radius: 8px; margin: 1.5rem 0;">
+        <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">🎯 Πώς λειτουργεί:</div>
+        <div style="color: #78350f; font-size: 0.95rem; line-height: 1.6;">
+          Κάθε σεζόν (1 Σεπτ - 30 Ιούν), οι top 3 παίκτες κερδίζουν επιπλέον bonus:<br>
+          <strong>🥇 1ος: €150</strong> | <strong>🥈 2ος: €75</strong> | <strong>🥉 3ος: €35</strong>
         </div>
       </div>
 
@@ -288,9 +309,18 @@
         </div>
         <div class="point-card">
           <div class="emoji">👥</div>
-          <div class="name">Σύσταση (Αγορά)</div>
-          <div class="desc">Όταν οι φίλοι που συστήνουμε κάνουν αγορά</div>
+          <div class="name">Σύσταση</div>
+          <div class="desc">Όταν φίλοι που συστήνουμε κάνουν αγορά</div>
           <div class="badge">+50 πόντοι</div>
+        </div>
+      </div>
+
+      <h3>⏰ Σημαντικό: Ισχύ Πόντων</h3>
+      <div style="background: #dbeafe; border-left: 4px solid #3b82f6; padding: 1.2rem; border-radius: 8px; margin: 1.5rem 0;">
+        <div style="color: #1e40af; font-size: 0.95rem; line-height: 1.6;">
+          <strong>✓ Κάθε πόντος λήγει 12 μήνες μετά τη δημιουργία του</strong><br>
+          Παράδειγμα: Αν κερδίσετε 20π στις 1 Οκτ 2026, θα λήξουν στις 1 Οκτ 2027<br>
+          <strong>✓ Τα πόντοι του διαγωνισμού μετράνε ΜΟΝΟ εντός σεζόν (1 Ιούλ - 30 Ιούν)</strong>
         </div>
       </div>
 
@@ -400,10 +430,11 @@
         el.innerHTML = '<div class="empty">Δεν υπάρχουν δεδομένα ακόμα.</div>';
         return;
       }
-      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Ενεργοί Πόντοι</th><th>Επίπεδο</th></tr></thead><tbody>';
+      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Όνομα</th><th>Ενεργοί Πόντοι</th><th>Επίπεδο</th></tr></thead><tbody>';
       data.leaderboard.forEach(function(item) {
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
         html += '<td><span class="ref-code">' + item.ref + '</span></td>';
+        html += '<td>' + (item.name || '—') + '</td>';
         html += '<td><strong><span class="counter">' + item.points + '</span></strong></td>';
         html += '<td><span class="badge ' + getLevelClass(item.level) + '">' + item.level + '</span></td></tr>';
       });
@@ -412,7 +443,7 @@
     });
   }
 
-  // Search profile
+  // Search profile - UPDATED with dual display
   function searchProfile() {
     var ref = document.getElementById('ref-input').value.trim();
     if (!ref) { showProfileError('Εισάγετε τον κωδικό REF'); return; }
@@ -439,6 +470,15 @@
 
       var d = data.data;
       var levelClass = getLevelClass(d.level);
+      
+      // Tier status badges
+      var tierHtml = '<div class="tier-badges">';
+      tierHtml += d.tierRedeemed && d.tierRedeemed.bronze ? '<div class="tier-badge redeemed">🥉 Bronze ✅</div>' : '<div class="tier-badge">🥉 Bronze —</div>';
+      tierHtml += d.tierRedeemed && d.tierRedeemed.silver ? '<div class="tier-badge redeemed">🥈 Silver ✅</div>' : '<div class="tier-badge">🥈 Silver —</div>';
+      tierHtml += d.tierRedeemed && d.tierRedeemed.gold ? '<div class="tier-badge redeemed">🥇 Gold ✅</div>' : '<div class="tier-badge">🥇 Gold —</div>';
+      tierHtml += '</div>';
+      
+      // Tier progress
       var progressHtml = '';
       if (d.nextLevel) {
         var total = d.activePoints + d.toNext;
@@ -446,15 +486,28 @@
         progressHtml = '<div style="margin-top: 1rem;"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7280; margin-bottom: 0.4rem;"><span>Πρόοδος για ' + d.nextLevel + '</span><span>' + pct + '%</span></div><div style="height: 10px; background: #e5e7eb; border-radius: 999px;"><div style="height: 100%; background: linear-gradient(90deg, #7c3aed, #a78bfa); width:' + pct + '%; border-radius: 999px;"></div></div></div>';
       }
 
+      // Leaderboard badge
+      var leaderboardHtml = '';
+      if (d.leaderboardPoints !== undefined) {
+        var lbBadge = '';
+        if (d.leaderboardPoints >= 150) lbBadge = '🥉 Bronze';
+        if (d.leaderboardPoints >= 350) lbBadge = '🥈 Silver';
+        if (d.leaderboardPoints >= 600) lbBadge = '🥇 Gold';
+        leaderboardHtml = '<div class="dual-card leaderboard"><h4>🏆 Leaderboard (Σεζόν)</h4><div class="big-number">' + d.leaderboardPoints + '</div><div class="sub-text">πόντοι ' + (lbBadge ? '(' + lbBadge + ')' : '') + '</div></div>';
+      }
+
+      // Expiry info
+      var expiryHtml = '';
+      if (d.nextExpiryDate) {
+        expiryHtml = '<div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 8px; margin-top: 1rem;"><div style="font-size: 0.9rem; color: #92400e;"><strong>⏰ Επόμενη Λήξη:</strong> ' + d.nextExpiryDate + ' (' + d.nextExpiryDays + ' ημέρες)</div></div>';
+      }
+
       var html = '<div class="profile-box">'
         + '<div class="profile-box ref-title">' + d.ref + '</div>'
         + '<div style="text-align: center; margin-bottom: 1.2rem;"><span class="badge ' + levelClass + '">' + d.level + '</span></div>'
-        + '<div class="p-row"><span class="p-label">Ενεργοί Πόντοι</span><span class="p-value">' + d.activePoints + '</span></div>'
-        + '<div class="p-row"><span class="p-label">Σύνολο Πόντων</span><span class="p-value">' + d.totalPoints + '</span></div>';
-      if (d.nextLevel) {
-        html += '<div class="p-row"><span class="p-label">Χρειάζεστε ακόμα για ' + d.nextLevel + '</span><span class="p-value">' + d.toNext + '</span></div>';
-      }
-      html += progressHtml + '</div>';
+        + '<div class="dual-display"><div class="dual-card"><h4>💎 Προσωπικοί Πόντοι</h4><div class="big-number">' + d.activePoints + '</div><div class="sub-text">ενεργοί (rolling 12m)</div></div>' + leaderboardHtml + '</div>'
+        + '<div style="background: #f0f0f0; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;"><strong>Tier Status:</strong>' + tierHtml + '</div>'
+        + progressHtml + expiryHtml + '</div>';
 
       var el = document.getElementById('profile-result');
       el.innerHTML = html;
