@@ -432,8 +432,9 @@
       }
       var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Όνομα</th><th>Ενεργοί Πόντοι</th><th>Επίπεδο</th></tr></thead><tbody>';
       data.leaderboard.forEach(function(item) {
+        var grandPrizeIndicator = item.rank <= 3 ? '🏆 ' : '';
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
-        html += '<td><span class="ref-code">' + item.ref + '</span></td>';
+        html += '<td><span class="ref-code">' + grandPrizeIndicator + item.ref + '</span></td>';
         html += '<td>' + (item.name || '—') + '</td>';
         html += '<td><strong><span class="counter">' + item.points + '</span></strong></td>';
         html += '<td><span class="badge ' + getLevelClass(item.level) + '">' + item.level + '</span></td></tr>';
