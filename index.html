@@ -250,7 +250,7 @@
         Το πρόγραμμα μας έχει <strong>δύο παράλληλα κίνητρα</strong>: προσωπικές αγορές + ετήσιο διαγωνισμό. Κάθε πόντος σας φέρνει πιο κοντά σε αποκλειστικές ανταμοιβές!
       </p>
       
-      <h3>🏆 Τα 3 Επίπεδα Προσωπικών Αγορών (Rolling 12-μήνων)</h3>
+      <h3>🏆 Τα 3 Επίπεδα Προσωπικών Αγορών (τελευταίοι 12 μήνες)</h3>
       <div class="level-grid">
         <div class="level-card bronze">
           <div class="emoji">🥉</div>
@@ -471,11 +471,11 @@
       var d = data.data;
       var levelClass = getLevelClass(d.level);
       
-      // Tier status badges
+      // Tier badges - show ACHIEVED tiers based on active points
       var tierHtml = '<div class="tier-badges">';
-      tierHtml += d.tierRedeemed && d.tierRedeemed.bronze ? '<div class="tier-badge redeemed">🥉 Bronze ✅</div>' : '<div class="tier-badge">🥉 Bronze —</div>';
-      tierHtml += d.tierRedeemed && d.tierRedeemed.silver ? '<div class="tier-badge redeemed">🥈 Silver ✅</div>' : '<div class="tier-badge">🥈 Silver —</div>';
-      tierHtml += d.tierRedeemed && d.tierRedeemed.gold ? '<div class="tier-badge redeemed">🥇 Gold ✅</div>' : '<div class="tier-badge">🥇 Gold —</div>';
+      tierHtml += d.activePoints >= 150 ? '<div class="tier-badge redeemed">🥉 Bronze ✅</div>' : '<div class="tier-badge">🥉 Bronze —</div>';
+      tierHtml += d.activePoints >= 350 ? '<div class="tier-badge redeemed">🥈 Silver ✅</div>' : '<div class="tier-badge">🥈 Silver —</div>';
+      tierHtml += d.activePoints >= 600 ? '<div class="tier-badge redeemed">🥇 Gold ✅</div>' : '<div class="tier-badge">🥇 Gold —</div>';
       tierHtml += '</div>';
       
       // Tier progress
