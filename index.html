@@ -250,7 +250,7 @@
         Το πρόγραμμα μας έχει <strong>δύο παράλληλα κίνητρα</strong>: προσωπικές αγορές + ετήσιο διαγωνισμό. Κάθε πόντος σας φέρνει πιο κοντά σε αποκλειστικές ανταμοιβές!
       </p>
       
-      <h3>🏆 Τα 3 Επίπεδα Προσωπικών Αγορών (τελευταίοι 12 μήνες)</h3>
+      <h3>🏆 Τα 3 Επίπεδα Προσωπικών Αγορών & Ενεργειών (τελευταίοι 12 μήνες)</h3>
       <div class="level-grid">
         <div class="level-card bronze">
           <div class="emoji">🥉</div>
@@ -430,7 +430,7 @@
         el.innerHTML = '<div class="empty">Δεν υπάρχουν δεδομένα ακόμα.</div>';
         return;
       }
-      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Όνομα</th><th>Ατομικοί Πόντοι</th><th>Ετήσιοι Πόντοι</th><th>Επίπεδο</th></tr></thead><tbody>';
+      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Όνομα</th><th>Ατομικοί Πόντοι</th><th>Ετήσιοι Πόντοι</th><th>Επίπεδο (Ετήσιος Διαγωνισμός)</th></tr></thead><tbody>';
       data.leaderboard.forEach(function(item) {
         var grandPrizeIndicator = item.rank <= 3 ? '🏆 ' : '';
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
