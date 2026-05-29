@@ -495,13 +495,24 @@
         if (d.leaderboardPoints >= 150) lbBadge = '🥉 Bronze';
         if (d.leaderboardPoints >= 350) lbBadge = '🥈 Silver';
         if (d.leaderboardPoints >= 600) lbBadge = '🥇 Gold';
-        leaderboardHtml = '<div class="dual-card leaderboard"><h4>🏆 Leaderboard (Σεζόν)</h4><div class="big-number">' + d.leaderboardPoints + '</div><div class="sub-text">πόντοι ' + (lbBadge ? '(' + lbBadge + ')' : '') + '</div></div>';
+        // Υπολογισμός τρέχουσας σεζόν (Σεπτ–Ιούν)
+        var _now = new Date();
+        var _sy  = _now.getMonth() >= 8 ? _now.getFullYear() : _now.getFullYear() - 1;
+        var _seasonLabel = 'Σεπτ ' + _sy + ' – Ιούν ' + (_sy + 1);
+        leaderboardHtml = '<div class="dual-card leaderboard">'
+          + '<h4>🏆 Leaderboard (Σεζόν)</h4>'
+          + '<div class="big-number">' + d.leaderboardPoints + '</div>'
+          + '<div class="sub-text">πόντοι' + (lbBadge ? ' (' + lbBadge + ')' : '') + '</div>'
+          + '<div style="font-size:0.75rem;color:#b45309;margin-top:4px;">📅 ' + _seasonLabel + '</div>'
+          + '</div>';
       }
 
       // Expiry info
       var expiryHtml = '';
       if (d.nextExpiryDate) {
-        expiryHtml = '<div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 8px; margin-top: 1rem;"><div style="font-size: 0.9rem; color: #92400e;"><strong>⏰ Επόμενη Λήξη:</strong> ' + d.nextExpiryDate + ' (' + d.nextExpiryDays + ' ημέρες)</div></div>';
+        expiryHtml = '<div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:1rem;border-radius:8px;margin-top:1rem;">'
+          + '<div style="font-size:0.9rem;color:#92400e;">⏰ Οι προσωπικοί πόντοι ισχύουν μέχρι: <strong>' + d.nextExpiryDate + '</strong></div>'
+          + '</div>';
       }
 
       var html = '<div class="profile-box">'
