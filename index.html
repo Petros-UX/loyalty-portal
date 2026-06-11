@@ -419,8 +419,8 @@
   // Load leaderboard
   function loadLeaderboard() {
     var fullUrl = BASE_API + '?action=leaderboard';
-    var url = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(fullUrl);
-    apiCall(url, function(err, data) {
+    // Direct fetch (χωρίς proxy - Apps Script deployments επιτρέπουν CORS)
+    apiCall(fullUrl, function(err, data) {
       var el = document.getElementById('lb-content');
       if (err || !data || !data.success) {
         el.innerHTML = '<div class="error">Σφάλμα φόρτωσης δεδομένων. Δοκιμάστε να ανανεώσετε τη σελίδα.</div>';
@@ -456,8 +456,8 @@
     document.getElementById('profile-loading').style.display = 'block';
 
     var fullUrl = BASE_API + '?action=clientInfo&ref=' + encodeURIComponent(ref);
-    var url = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(fullUrl);
-    apiCall(url, function(err, data) {
+    // Direct fetch (χωρίς proxy)
+    apiCall(fullUrl, function(err, data) {
       document.getElementById('profile-loading').style.display = 'none';
       document.getElementById('search-btn').disabled = false;
 
