@@ -430,12 +430,11 @@
         el.innerHTML = '<div class="empty">Δεν υπάρχουν δεδομένα ακόμα.</div>';
         return;
       }
-      var html = '<table><thead><tr><th>Θέση</th><th>REF Code</th><th>Όνομα</th><th>Ατομικοί Πόντοι</th><th>Ετήσιοι Πόντοι</th><th>Επίπεδο (Ετήσιος Διαγωνισμός)</th></tr></thead><tbody>';
+      var html = '<table><thead><tr><th style="width:60px">Θέση</th><th style="width:120px;white-space:nowrap">REF Code</th><th>Ατομικοί Πόντοι</th><th>Ετήσιοι Πόντοι</th><th>Επίπεδο (Ετήσιος Διαγωνισμός)</th></tr></thead><tbody>';
       data.leaderboard.forEach(function(item) {
         var grandPrizeIndicator = item.rank <= 3 ? '🏆 ' : '';
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
-        html += '<td><span class="ref-code">' + grandPrizeIndicator + item.ref + '</span></td>';
-        html += '<td>' + (item.name || '—') + '</td>';
+        html += '<td style="white-space:nowrap"><span class="ref-code">' + grandPrizeIndicator + item.ref + '</span></td>';
         html += '<td><strong>' + (item.activePoints || '0') + '</strong></td>';
         html += '<td><strong><span class="counter">' + item.points + '</span></strong></td>';
         html += '<td><span class="badge ' + getLevelClass(item.level) + '">' + item.level + '</span></td></tr>';
