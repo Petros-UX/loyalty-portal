@@ -21,6 +21,12 @@
     .card h3 { font-size: 1.05rem; color: #1f2937; margin: 1.5rem 0 1rem 0; }
     table { width: 100%; border-collapse: collapse; }
     thead tr { background: #f9fafb; }
+    @media(max-width:480px){
+      table { font-size: 12px; }
+      table th, table td { padding: 8px 6px; }
+      table th:first-child, table td:first-child { width: 36px !important; }
+      table th:nth-child(2), table td:nth-child(2) { width: 80px !important; }
+    }
     th { padding: 0.8rem 1rem; text-align: left; font-size: 0.85rem; color: #6b7280; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
     td { padding: 0.9rem 1rem; border-bottom: 1px solid #f3f4f6; font-size: 0.95rem; }
     tr:hover td { background: #faf8ff; }
@@ -430,7 +436,7 @@
         el.innerHTML = '<div class="empty">Δεν υπάρχουν δεδομένα ακόμα.</div>';
         return;
       }
-      var html = '<table><thead><tr><th style="width:60px">Θέση</th><th style="width:120px;white-space:nowrap">REF Code</th><th>Ατομικοί Πόντοι</th><th>Ετήσιοι Πόντοι</th><th>Επίπεδο (Ετήσιος Διαγωνισμός)</th></tr></thead><tbody>';
+      var html = '<table><thead><tr><th style="width:50px">Θέση</th><th style="width:110px;white-space:nowrap">REF Code</th><th style="white-space:nowrap">Ατομικοί<br>Πόντοι</th><th style="white-space:nowrap">Ετήσιοι<br>Πόντοι</th><th style="white-space:nowrap">Επίπεδο<br><span style="font-size:10px;font-weight:400;opacity:.7">(Ετήσιος Διαγ.)</span></th></tr></thead><tbody>';
       data.leaderboard.forEach(function(item) {
         var grandPrizeIndicator = item.rank <= 3 ? '🏆 ' : '';
         html += '<tr><td><span class="rank">' + getRankEmoji(item.rank) + '</span></td>';
